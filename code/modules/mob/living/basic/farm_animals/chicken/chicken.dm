@@ -38,6 +38,11 @@ GLOBAL_VAR_INIT(chicken_count, 0)
 	///boolean deciding whether eggs laid by this chicken can hatch into chicks
 	var/fertile = TRUE
 
+	//RaptureEdit
+	vocal_bark_id = "synthgrunt"
+	vocal_pitch = 1.4
+	vocal_pitch_range = 0.4
+
 /mob/living/basic/chicken/Initialize(mapload)
 	. = ..()
 	GLOB.chicken_count++

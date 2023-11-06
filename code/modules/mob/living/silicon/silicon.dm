@@ -51,6 +51,10 @@
 	interaction_range = 7 //wireless control range
 	var/control_disabled = FALSE // Set to 1 to stop AI from interacting via Click()
 
+	//RaptureEdit
+	vocal_bark_id = "synth"
+	vocal_pitch_range = 0.1
+
 	var/obj/item/modular_computer/pda/silicon/modularInterface
 
 

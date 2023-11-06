@@ -37,6 +37,10 @@
 	/// Probability that, if we successfully bite a shocked cable, that we will die to it.
 	var/cable_zap_prob = 85
 
+	//RaptureEdit
+	vocal_bark_id = "squeak"
+	vocal_pitch = 1.4
+
 /mob/living/basic/mouse/Initialize(mapload, tame = FALSE, new_body_color)
 	. = ..()
 	if(contributes_to_ratcap)

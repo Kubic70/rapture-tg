@@ -57,6 +57,10 @@ const RecordInfo = (props, context) => {
     species,
     wanted_status,
     voice,
+    //RaptureEdit - BEGIN
+    past_general_records,
+    past_security_records,
+    //RaptureEdit - END
   } = foundRecord;
 
   const hasValidCrimes = !!crimes.find((crime) => !!crime.valid);
@@ -179,6 +183,18 @@ const RecordInfo = (props, context) => {
                 text={note}
               />
             </LabeledList.Item>
+            {/*RaptureEdit - BEGIN*/}
+            <LabeledList.Item label="General Records">
+              <Box wrap maxWidth="100%">
+                {past_general_records || 'N/A'}
+              </Box>
+            </LabeledList.Item>
+            <LabeledList.Item label="Past Security Records">
+              <Box wrap maxWidth="100%">
+                {past_security_records || 'N/A'}
+              </Box>
+            </LabeledList.Item>
+            {/*RaptureEdit - END*/}
           </LabeledList>
         </Section>
       </Stack.Item>

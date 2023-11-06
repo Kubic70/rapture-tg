@@ -24,6 +24,9 @@
 	/// Things that will scare us into being stationary. Vehicles are scary to deers because they might have headlights.
 	var/static/list/stationary_scary_things = list(/obj/vehicle)
 
+	//RaptureEdit
+	vocal_bark_id = "mutedc4"
+
 /mob/living/basic/deer/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/footstep, footstep_type = FOOTSTEP_MOB_SHOE)

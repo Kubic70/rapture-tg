@@ -9,6 +9,7 @@ import { JobsPage } from './JobsPage';
 import { MainPage } from './MainPage';
 import { SpeciesPage } from './SpeciesPage';
 import { QuirksPage } from './QuirksPage';
+import { FlavorsPage } from './FlavorsPage';  //RaptureEdit
 
 enum Page {
   Antags,
@@ -16,7 +17,8 @@ enum Page {
   Jobs,
   Species,
   Quirks,
-}
+  Flavors,
+} //RaptureEdit - Flavors ADD
 
 const CharacterProfiles = (props: {
   activeSlot: number;
@@ -76,6 +78,12 @@ export const CharacterPreferenceWindow = (props, context) => {
     case Page.Quirks:
       pageContents = <QuirksPage />;
       break;
+
+    //RaptureEdit - BEGIN
+    case Page.Flavors:
+      pageContents = <FlavorsPage />;
+      break;
+    //RaptureEdit - END
     default:
       exhaustiveCheck(currentPage);
   }
@@ -115,6 +123,18 @@ export const CharacterPreferenceWindow = (props, context) => {
                   Character
                 </PageButton>
               </Stack.Item>
+
+              {/*RaptureEdit - BEGIN*/}
+              <Stack.Item grow>
+                <PageButton
+                  currentPage={currentPage}
+                  page={Page.Flavors}
+                  setPage={setCurrentPage}
+                  otherActivePages={[Page.Species]}>
+                  Flavors
+                </PageButton>
+              </Stack.Item>
+              {/*RaptureEdit - END*/}
 
               <Stack.Item grow>
                 <PageButton

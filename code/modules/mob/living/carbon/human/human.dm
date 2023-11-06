@@ -206,6 +206,12 @@
 					to_chat(human_user,  "<span class='notice ml-1'>Detected physiological traits:</span>\n<span class='notice ml-2'>[quirkstring]</span>")
 				else
 					to_chat(human_user,  "<span class='notice ml-1'>No physiological traits found.</span>")
+			//RaptureEdit - BEGIN
+			if(href_list["medrecords"])
+				to_chat(usr, "<b>Medical Record:</b> [target_record.past_medical_records]")
+			if(href_list["genrecords"])
+				to_chat(usr, "<b>General Record:</b> [target_record.past_general_records]")
+			//RaptureEdit - END
 			return //Medical HUD ends here.
 
 		if(href_list["hud"] == "s")
@@ -272,6 +278,22 @@
 				to_chat(human_user, "----------")
 
 				return
+
+			//RaptureEdit - BEGIN
+			if(href_list["genrecords"])
+				if(!human_user.canUseHUD())
+					return
+				if(!HAS_TRAIT(human_user, TRAIT_SECURITY_HUD))
+					return
+				to_chat(human_user, "<b>General Record:</b> [target_record.past_general_records]")
+
+			if(href_list["secrecords"])
+				if(!human_user.canUseHUD())
+					return
+				if(!HAS_TRAIT(human_user, TRAIT_SECURITY_HUD))
+					return
+				to_chat(human_user, "<b>Security Record:</b> [target_record.past_security_records]")
+			//RaptureEdit - END
 
 			if(href_list["add_citation"])
 				var/max_fine = CONFIG_GET(number/maxfine)

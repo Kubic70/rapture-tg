@@ -65,6 +65,10 @@
 			quirk_notes = target.quirk_notes,
 			rank = target.rank,
 			species = target.species,
+			//RaptureEdit - BEGIN
+			past_medical_records = target.past_medical_records,
+			past_general_records = target.past_general_records,
+			//RaptureEdit - END
 		))
 
 	data["records"] = records

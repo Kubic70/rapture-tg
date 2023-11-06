@@ -30,6 +30,10 @@ export const MedicalRecordView = (props, context) => {
     name,
     quirk_notes,
     rank,
+    //RaptureEdit - BEGIN
+    past_general_records,
+    past_medical_records,
+    //RaptureEdit - END
     species,
   } = foundRecord;
 
@@ -185,6 +189,18 @@ export const MedicalRecordView = (props, context) => {
                 <Box key={index}>&#8226; {quirk}</Box>
               ))}
             </LabeledList.Item>
+            {/*RaptureEdit - BEGIN*/}
+            <LabeledList.Item label="General Records">
+              <Box wrap maxWidth="100%">
+                {past_general_records || 'N/A'}
+              </Box>
+            </LabeledList.Item>
+            <LabeledList.Item label="Past Medical Records">
+              <Box wrap maxWidth="100%">
+                {past_medical_records || 'N/A'}
+              </Box>
+            </LabeledList.Item>
+            {/*RaptureEdit - END*/}
           </LabeledList>
         </Section>
       </Stack.Item>

@@ -46,6 +46,7 @@
 			. += span_warning("It doesn't seem to be responding.")
 		if(DEAD)
 			. += span_deadsay("It looks like its system is corrupted and requires a reset.")
+	. += get_silicon_flavortext() //RaptureEdit
 	. += "</span>"
 
 	. += ..()
