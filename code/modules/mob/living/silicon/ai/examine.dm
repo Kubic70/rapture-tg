@@ -26,6 +26,7 @@
 			. += "The wireless networking light is blinking."
 		else if (!shunted && !client)
 			. += "[src]Core.exe has stopped responding! NTOS is searching for a solution to the problem..."
+	. += get_silicon_flavortext() // RaptureEdit
 	. += "</span>"
 
 	. += ..()

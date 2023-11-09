@@ -33,6 +33,11 @@
 	/// What we grow into.
 	var/grow_as = /mob/living/basic/chicken
 
+	//RaptureEdit
+	vocal_bark_id = "squeak"
+	vocal_pitch = 1.4
+
+
 /mob/living/basic/chick/Initialize(mapload)
 	. = ..()
 	pixel_x = base_pixel_x + rand(-6, 6)

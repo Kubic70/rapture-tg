@@ -44,6 +44,9 @@
 		/datum/pet_command/point_targetting/fetch,
 		/datum/pet_command/play_dead,
 	)
+	//RaptureEdit
+	vocal_bark_id = "bullet"
+	vocal_speed = 6
 
 /mob/living/basic/pet/dog/Initialize(mapload)
 	. = ..()

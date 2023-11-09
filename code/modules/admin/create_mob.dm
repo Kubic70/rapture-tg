@@ -29,5 +29,13 @@
 	// Needs to be called towards the end to update all the UIs just set above
 	human.dna.initialize_dna(newblood_type = random_blood_type(), create_mutation_blocks = randomize_mutations, randomize_features = TRUE)
 	// Snowflake for Ethereals
+
+
+	//RaptureEdit - BEGIN
+	human.set_bark(pick(GLOB.bark_random_list))
+	human.vocal_pitch = BARK_PITCH_RAND(human.gender)
+	human.vocal_pitch_range = BARK_VARIANCE_RAND
+	//RaptureEdit - END
+
 	human.updatehealth()
 	human.updateappearance(mutcolor_update = TRUE)

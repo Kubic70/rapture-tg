@@ -84,6 +84,15 @@
 	/// Current arrest status
 	var/wanted_status = WANTED_NONE
 
+	//RaptureEdit - BEGIN
+	/// Contains their own custom past general records.
+	var/past_general_records
+	/// Contains their own custom past medical records.
+	var/past_medical_records
+	/// Contains their own custom past security records.
+	var/past_security_records
+	//RaptureEdit - END
+
 /datum/record/crew/New(
 	age = 18,
 	blood_type = "?",
@@ -105,6 +114,11 @@
 	physical_status = PHYSICAL_ACTIVE,
 	mental_status = MENTAL_STABLE,
 	quirk_notes,
+	//RaptureEdit - BEGIN
+	past_general_records = "",
+	past_medical_records = "",
+	past_security_records = "",
+	//RaptureEdit - END
 )
 	. = ..()
 	src.lock_ref = lock_ref
@@ -115,6 +129,11 @@
 	src.physical_status = physical_status
 	src.mental_status = mental_status
 	src.quirk_notes = quirk_notes
+	//RaptureEdit - BEGIN
+	src.past_general_records = past_general_records
+	src.past_medical_records = past_medical_records
+	src.past_security_records = past_security_records
+	//RaptureEdit - END
 
 	GLOB.manifest.general += src
 
@@ -225,7 +244,17 @@
 
 	final_paper_text += "Species: [species]<br>Fingerprint: [fingerprint]<br>Wanted Status: [wanted_status]<br><br>"
 
+	//RaptureEdit - BEGIN
+	if(past_general_records != "")
+		final_paper_text += "\nGeneral Records:\n[past_general_records]\n"
+	//RaptureEdit - END
+
 	final_paper_text += "<center><B>Security Data</B></center><br><br>"
+
+	//RaptureEdit - BEGIN
+	if(past_security_records != "")
+		final_paper_text += "<br>Security Records:<br>[past_security_records]<br>"
+	//RaptureEdit - END
 
 	final_paper_text += "Crimes:<br>"
 	final_paper_text += {"<table style="text-align:center;" border="1" cellspacing="0" width="100%">

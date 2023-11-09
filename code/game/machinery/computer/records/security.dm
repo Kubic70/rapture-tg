@@ -129,6 +129,10 @@
 			rank = target.rank,
 			species = target.species,
 			wanted_status = target.wanted_status,
+			//RaptureEdit - BEGIN
+			past_general_records = target.past_general_records,
+			past_security_records = target.past_security_records,
+			//RaptureEdit - END
 		))
 
 	data["records"] = records

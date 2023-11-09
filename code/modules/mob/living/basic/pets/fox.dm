@@ -29,6 +29,12 @@
 	attack_vis_effect = ATTACK_EFFECT_BITE
 	ai_controller = /datum/ai_controller/basic_controller/fox
 
+	//RaptureEdit
+	vocal_bark_id = "bullet"
+	vocal_speed = 2
+	vocal_pitch = 1.6
+	vocal_pitch_range = 0.4
+
 /mob/living/basic/pet/fox/Initialize(mapload)
 	. = ..()
 	AddElement(/datum/element/pet_bonus, "pants and yaps happily!")

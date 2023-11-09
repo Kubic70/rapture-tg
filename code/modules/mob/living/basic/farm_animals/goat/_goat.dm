@@ -45,6 +45,8 @@
 		/obj/structure/spacevine,
 	)
 
+	vocal_bark_id = "banjoc3" //RaptureEdit
+
 /mob/living/basic/goat/Initialize(mapload)
 	. = ..()
 	add_udder()

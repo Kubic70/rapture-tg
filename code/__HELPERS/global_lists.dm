@@ -68,6 +68,14 @@
 	init_crafting_recipes()
 	init_crafting_recipes_atoms()
 
+	/*//RaptureEdit - BEGIN
+	for(var/path in subtypesof(/datum/bark))
+		var/datum/bark/B = new path()
+		GLOB.bark_list[B.id] = path
+		if(B.allow_random)
+			GLOB.bark_random_list[B.id] = path
+	*///RaptureEdit - END
+
 /// Inits crafting recipe lists
 /proc/init_crafting_recipes(list/crafting_recipes)
 	for(var/path in subtypesof(/datum/crafting_recipe))

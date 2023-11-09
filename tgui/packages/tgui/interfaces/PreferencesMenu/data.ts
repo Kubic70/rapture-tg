@@ -135,6 +135,11 @@ export type PreferencesMenuData = {
     };
     secondary_features: Record<string, unknown>;
     supplemental_features: Record<string, unknown>;
+    //RaptureEdit - BEGIN
+    flavor_data: Record<string, string>;
+    headshot_data: Record<string, string>;
+    bark_data: Record<string, string>;
+    //RaptureEdit - END
 
     names: Record<string, string>;
 

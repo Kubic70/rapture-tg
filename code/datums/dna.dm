@@ -189,7 +189,13 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 		L[DNA_SKIN_TONE_BLOCK] = construct_block(GLOB.skin_tones.Find(H.skin_tone), GLOB.skin_tones.len)
 		L[DNA_EYE_COLOR_LEFT_BLOCK] = sanitize_hexcolor(H.eye_color_left, include_crunch = FALSE)
 		L[DNA_EYE_COLOR_RIGHT_BLOCK] = sanitize_hexcolor(H.eye_color_right, include_crunch = FALSE)
-
+		//RaptureEdit - BEGIN
+		L[DNA_BARK_SOUND_BLOCK] = construct_block(GLOB.bark_list.Find(H.vocal_bark_id), GLOB.bark_list.len)
+		H.set_bark(H.vocal_bark_id)
+		L[DNA_BARK_SPEED_BLOCK] = construct_block(H.vocal_speed * 4, 16)
+		L[DNA_BARK_PITCH_BLOCK] = construct_block(H.vocal_pitch * 30, 48)
+		L[DNA_BARK_VARIANCE_BLOCK] = construct_block(H.vocal_pitch_range * 48, 48)
+		//RaptureEdit - END
 	for(var/blocknum in 1 to DNA_UNI_IDENTITY_BLOCKS)
 		. += L[blocknum] || random_string(GET_UI_BLOCK_LEN(blocknum), GLOB.hex_characters)
 
@@ -326,6 +332,17 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 			set_uni_identity_block(blocknumber, construct_block(GLOB.facial_hairstyles_list.Find(H.facial_hairstyle), GLOB.facial_hairstyles_list.len))
 		if(DNA_HAIRSTYLE_BLOCK)
 			set_uni_identity_block(blocknumber, construct_block(GLOB.hairstyles_list.Find(H.hairstyle), GLOB.hairstyles_list.len))
+		//RaptureEdit
+		if(DNA_BARK_SOUND_BLOCK)
+			set_uni_identity_block(blocknumber, construct_block(GLOB.bark_list.Find(H.vocal_bark_id), GLOB.bark_list.len))
+			H.set_bark(H.vocal_bark_id)
+		if(DNA_BARK_SPEED_BLOCK)
+			set_uni_identity_block(blocknumber, construct_block(H.vocal_speed * 4, 16))
+		if(DNA_BARK_PITCH_BLOCK)
+			set_uni_identity_block(blocknumber, construct_block(H.vocal_pitch * 30, 48))
+		if(DNA_BARK_VARIANCE_BLOCK)
+			set_uni_identity_block(blocknumber, construct_block(H.vocal_pitch_range * 48, 48))
+
 
 /datum/dna/proc/update_uf_block(blocknumber)
 	if(!blocknumber)
@@ -614,6 +631,13 @@ GLOBAL_LIST_INIT(total_uf_len_by_block, populate_total_uf_len_by_block())
 	skin_tone = GLOB.skin_tones[deconstruct_block(get_uni_identity_block(structure, DNA_SKIN_TONE_BLOCK), GLOB.skin_tones.len)]
 	eye_color_left = sanitize_hexcolor(get_uni_identity_block(structure, DNA_EYE_COLOR_LEFT_BLOCK))
 	eye_color_right = sanitize_hexcolor(get_uni_identity_block(structure, DNA_EYE_COLOR_RIGHT_BLOCK))
+
+	//RaptureEdit
+	set_bark(GLOB.bark_list[deconstruct_block(get_uni_identity_block(structure, DNA_BARK_SOUND_BLOCK), GLOB.bark_list.len)])
+	vocal_speed = (deconstruct_block(get_uni_identity_block(structure, DNA_BARK_SPEED_BLOCK), 16) / 4)
+	vocal_pitch = (deconstruct_block(get_uni_identity_block(structure, DNA_BARK_PITCH_BLOCK), 48) / 30)
+	vocal_pitch_range = (deconstruct_block(get_uni_identity_block(structure, DNA_BARK_VARIANCE_BLOCK), 48) / 48)
+
 	set_haircolor(sanitize_hexcolor(get_uni_identity_block(structure, DNA_HAIR_COLOR_BLOCK)), update = FALSE)
 	set_facial_haircolor(sanitize_hexcolor(get_uni_identity_block(structure, DNA_FACIAL_HAIR_COLOR_BLOCK)), update = FALSE)
 	if(HAS_TRAIT(src, TRAIT_SHAVED))

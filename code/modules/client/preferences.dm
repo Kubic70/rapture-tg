@@ -276,6 +276,31 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 			return TRUE
 
+		//RaptureEdit - BEGIN
+		if ("bark_preview")
+			if(SSticker.current_state == GAME_STATE_STARTUP)
+				to_chat(parent.mob, "<span class='warning'>Bark previews can't play during initialization!</span>")
+				return
+			if(!COOLDOWN_FINISHED(src, bark_previewing))
+				return
+			if(!parent || !parent.mob)
+				return
+			COOLDOWN_START(src, bark_previewing, (5 SECONDS))
+			var/atom/movable/barkbox = new(get_turf(parent.mob))
+
+			var/bark_id = params["barkid"]
+			var/bark_speed = params["barkspeed"]
+			var/bark_pitch = params["barkpitch"]
+			var/bark_variance = params["barkvariance"]
+
+			barkbox.set_bark(bark_id)
+			var/total_delay
+			for(var/i in 1 to (round((32 / bark_speed)) + 1))
+				addtimer(CALLBACK(barkbox, /atom/movable/proc/bark, list(parent.mob), 7, 70, rand((bark_pitch * 100), (bark_pitch*100) + (bark_variance*100)) / 100), total_delay)
+				total_delay += rand(DS2TICKS(bark_speed/4), DS2TICKS(bark_speed/4) + DS2TICKS(bark_speed/4)) TICKS
+			QDEL_IN(barkbox, total_delay)
+		//RaptureEdit - END
+
 	for (var/datum/preference_middleware/preference_middleware as anything in middleware)
 		var/delegation = preference_middleware.action_delegations[action]
 		if (!isnull(delegation))

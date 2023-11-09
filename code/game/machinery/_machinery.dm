@@ -102,6 +102,10 @@
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	initial_language_holder = /datum/language_holder/speaking_machine
 
+	//RaptureEdit
+	vocal_bark_id = "synth"
+	vocal_pitch = 0.6
+
 	var/machine_stat = NONE
 	var/use_power = IDLE_POWER_USE
 		//0 = dont use power

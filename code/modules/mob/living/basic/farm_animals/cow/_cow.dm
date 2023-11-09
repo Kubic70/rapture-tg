@@ -34,6 +34,10 @@
 	/// singular version for player cows
 	var/self_tame_message = "let out a happy moo"
 
+	//RaptureEdit
+	vocal_bark_id = "mutedc2"
+	vocal_pitch = 1.2
+
 /mob/living/basic/cow/Initialize(mapload)
 	AddComponent(/datum/component/tippable, \
 		tip_time = 0.5 SECONDS, \

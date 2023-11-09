@@ -419,6 +419,23 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	LAZYADD(update_on_z, say_popup)
 	addtimer(CALLBACK(src, PROC_REF(clear_saypopup), say_popup), 3.5 SECONDS)
 
+	//RaptureEdit - BEGIN
+	if(vocal_bark || vocal_bark_id)
+		for(var/mob/M in listening)
+			if(!M.client)
+				continue
+			if(!(M.client.prefs.toggles & SOUND_BARK))
+				listening -= M
+		var/barks = min(round((LAZYLEN(message_raw) / vocal_speed)) + 1, BARK_MAX_BARKS)
+		var/total_delay
+		vocal_current_bark = world.time
+		for(var/i in 1 to barks)
+			if(total_delay > BARK_MAX_TIME)
+				break
+			addtimer(CALLBACK(src, /atom/movable/proc/bark, listening, (message_range), (vocal_volume), BARK_DO_VARY(vocal_pitch, vocal_pitch_range), vocal_current_bark), total_delay)
+			total_delay += rand(DS2TICKS(vocal_speed / BARK_SPEED_BASELINE), DS2TICKS(vocal_speed/ BARK_SPEED_BASELINE) + DS2TICKS(vocal_speed/ BARK_SPEED_BASELINE)) TICKS
+	//RaptureEdit - END
+
 /mob/living/proc/clear_saypopup(image/say_popup)
 	LAZYREMOVE(update_on_z, say_popup)
 

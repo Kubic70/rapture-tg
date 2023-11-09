@@ -479,6 +479,10 @@
 		if(NAMEOF(src, glide_size))
 			set_glide_size(var_value)
 			. = TRUE
+		if(NAMEOF(src, vocal_bark)) //RaptureEdit
+			if(isfile(vocal_bark))
+				vocal_bark = sound(vocal_bark) //bark() expects vocal_bark to already be a sound datum, for performance reasons. adminbus QoL!
+			. = TRUE
 
 	if(!isnull(.))
 		datum_flags |= DF_VAR_EDITED
@@ -1533,6 +1537,17 @@
 	our_holder.selected_language = language_path
 
 	return our_holder.get_selected_language() // verifies its validity, returns it if successful.
+
+// RedEdit Sets the vocal bark for the atom, using the bark's ID
+/atom/movable/proc/set_bark(id)
+	if(!id)
+		return FALSE
+	var/datum/bark/B = GLOB.bark_list[id]
+	if(!B)
+		return FALSE
+	vocal_bark = sound(initial(B.soundpath))
+	vocal_bark_id = id
+	return vocal_bark
 
 /**
  * Randomizes our atom's language to an uncommon language if:

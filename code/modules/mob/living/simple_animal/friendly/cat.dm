@@ -39,6 +39,11 @@
 	attack_sound = 'sound/weapons/slash.ogg'
 	attack_vis_effect = ATTACK_EFFECT_CLAW
 
+	//RaptureEdit
+	vocal_bark_id = "mutedc4"
+	vocal_pitch = 1.4
+	vocal_pitch_range = 0.4
+
 	footstep_type = FOOTSTEP_MOB_CLAW
 
 /mob/living/simple_animal/pet/cat/Initialize(mapload)

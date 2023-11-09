@@ -25,6 +25,10 @@ export type SecurityRecord = {
   species: string;
   wanted_status: string;
   voice: string;
+  //RaptureEdit - BEGIN
+  past_general_records: string;
+  past_security_records: string;
+  //RaptureEdit - END
 };
 
 export type Crime = {
