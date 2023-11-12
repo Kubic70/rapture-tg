@@ -80,7 +80,8 @@ GLOBAL_VAR_INIT(combat_indicator_overlay, GenerateCombatOverlay())
 				else
 					visible_message(span_boldwarning("[src] gets ready for combat!"))
 		combat_indicator = TRUE
-		apply_status_effect(/datum/status_effect/grouped/surrender, src)
+		if(issilicon(src) || ishuman(src))
+			apply_status_effect(/datum/status_effect/grouped/surrender, src)
 		log_message("<font color='red'>has turned ON the combat indicator!</font>", LOG_ATTACK)
 		RegisterSignal(src, COMSIG_LIVING_STATUS_UNCONSCIOUS, PROC_REF(combat_indicator_unconscious_signal)) //From now on, whenever this mob falls unconcious, the referenced proc will fire.
 	else
