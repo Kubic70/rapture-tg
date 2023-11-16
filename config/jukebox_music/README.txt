@@ -13,3 +13,7 @@ Every sound you add must have a unique name. Avoid using the plus sign "+" and t
 Sound names must be in the format of [song name]+[length in deciseconds]+[beat in deciseconds].ogg
 
 A three minute song title "SS13" that lasted 3 minutes would have a file name SS13+1800+5.ogg
+
+RaptureTG edit!!!
+Now sound names must be in the format of [song name]+[length in deciseconds]+[beat in deciseconds]+[id].ogg
+A three minute song title "SS13" that lasted 3 minutes would have a file name SS13+1800+5+1.ogg
