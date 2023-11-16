@@ -1,5 +1,9 @@
+// RAPTURE EDIT - BEGIN
+/*
 /// Helper macro to check if the passed mob has jukebox sound preference enabled
 #define HAS_JUKEBOX_PREF(mob) (!QDELETED(mob) && !isnull(mob.client) && mob.client.prefs.read_preference(/datum/preference/toggle/sound_jukebox))
+*/
+// RAPTURE EDIT - END
 
 /obj/machinery/jukebox
 	name = "jukebox"
@@ -42,11 +46,15 @@
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	flags_1 = NODECONSTRUCT_1
 
+//RAPTURE EDIT - BEGIN
+/*
 /datum/track
 	var/song_name = "generic"
 	var/song_path = null
 	var/song_length = 0
 	var/song_beat = 0
+*/
+//RAPTURE EDIT - END
 
 /datum/track/default
 	song_path = 'sound/ambience/title3.ogg'

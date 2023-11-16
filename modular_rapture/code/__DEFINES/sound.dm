@@ -1,1 +1,6 @@
+// Barks
 #define SOUND_BARK 111
+
+// jukebox
+#define CHANNEL_JUKEBOX_START 1016
+#define SOUND_DEFAULT_DISTANCE_MULTIPLIER 2.5
