@@ -11,6 +11,7 @@
 	var/datum/track/playing = null
 	var/datum/track/selectedtrack = null
 	var/list/queuedplaylist = list()
+	var/selectedStyle = null
 	var/queuecooldown //This var exists solely to prevent accidental repeats of John Mulaney's 'What's New Pussycat?' incident. Intentional, however......
 
 /obj/machinery/jukebox/Destroy()
@@ -56,6 +57,7 @@
 	for(var/datum/track/S in SSjukeboxes.songs)
 		var/list/track_data = list(name = S.song_name)
 		data["songs"] += list(track_data)
+	data["styles"] = SSjukeboxes.styles
 	data["queued_tracks"] = list()
 	for(var/datum/track/S in queuedplaylist)
 		var/list/track_data = list(name = S.song_name)
@@ -149,6 +151,29 @@
 				SSjukeboxes.updatejukebox(wherejuke, jukefalloff = volume/35)
 			return TRUE
 
+/obj/machinery/jukebox/proc/activate_radio()
+	if(playing || selectedStyle == null)
+		return FALSE
+	var/radioList = list()
+	var/datum/track/T
+	for(T in songs)
+		if(T.song_style == selectedStyle)
+			radioList |= T
+	if(length(radioList) == 0)
+		return FALSE
+	playing = pick(radioList)
+	var/jukeboxslottotake = SSjukeboxes.addjukebox(src, playing, volume/35)
+	if(jukeboxslottotake)
+		active = TRUE
+		update_icon()
+		START_PROCESSING(SSobj, src)
+		stop = world.time + playing.song_length
+		say("Сейчас играет: [playing.song_name]")
+		playsound(src, 'sound/machines/terminal_insert_disc.ogg', 50, TRUE)
+		return TRUE
+	else
+		return FALSE
+
 /obj/machinery/jukebox/activate_music()
 	if(playing || !queuedplaylist.len)
 		return FALSE
@@ -167,6 +192,13 @@
 		return FALSE
 
 /obj/machinery/jukebox/disco/activate_music()
+	. = ..()
+	if(!.)
+		return
+	dance_setup()
+	lights_spin()
+
+/obj/machinery/jukebox/disco/activate_radio()
 	. = ..()
 	if(!.)
 		return
