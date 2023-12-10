@@ -182,6 +182,7 @@
 	if(jukeboxslottotake)
 		active = TRUE
 		update_icon()
+		update_use_power(ACTIVE_POWER_USE)
 		START_PROCESSING(SSobj, src)
 		stop = world.time + playing.song_length
 		queuedplaylist.Cut(1, 2)
@@ -210,6 +211,7 @@
 	if(!position)
 		return
 	SSjukeboxes.removejukebox(position)
+	update_use_power(IDLE_POWER_USE)
 	STOP_PROCESSING(SSobj, src)
 	playing = null
 	rangers = list()

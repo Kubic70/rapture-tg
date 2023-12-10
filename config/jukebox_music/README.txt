@@ -15,5 +15,5 @@ Sound names must be in the format of [song name]+[length in deciseconds]+[beat i
 A three minute song title "SS13" that lasted 3 minutes would have a file name SS13+1800+5.ogg
 
 RaptureTG edit!!!
-Now sound names must be in the format of [song name]+[length in deciseconds]+[beat in deciseconds]+[id].ogg
-A three minute song title "SS13" that lasted 3 minutes would have a file name SS13+1800+5+1.ogg
+Now sound names must be in the format of [song name]+[length in deciseconds]+[beat in deciseconds]+[id]+[style].ogg
+A three minute song title "SS13" that lasted 3 minutes would have a file name SS13+1800+5+1+disco.ogg

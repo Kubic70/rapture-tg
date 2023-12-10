@@ -106,10 +106,10 @@ SUBSYSTEM_DEF(jukeboxes)
 
 /datum/controller/subsystem/jukeboxes/Initialize()
 	var/list/tracks = flist("config/jukebox_music/sounds/")
-	var/max_tracks = CONFIG_GET(number/max_jukebox_songs)
+	/*var/max_tracks = CONFIG_GET(number/max_jukebox_songs)
 	if(max_tracks >= 0)
 		while(tracks.len > max_tracks)
-			LAZYREMOVE(tracks, pick(tracks))
+			LAZYREMOVE(tracks, pick(tracks))*/   // лимит треков по конфиг файлу, а надо ли?
 	for(var/S in tracks)
 		var/datum/track/T = new()
 		T.song_path = file("config/jukebox_music/sounds/[S]")
@@ -126,7 +126,8 @@ SUBSYSTEM_DEF(jukeboxes)
 		songs |= T
 	for(var/i in CHANNEL_JUKEBOX_START to CHANNEL_JUKEBOX)
 		freejukeboxchannels |= i
-	return ..()
+	return SS_INIT_SUCCESS
+	//return ..()   // скорей всего надо возвращать SS_INIT_SUCCESS
 
 /datum/controller/subsystem/jukeboxes/fire()
 	if(!activejukeboxes.len)

@@ -53,8 +53,6 @@
 	var/song_path = null
 	var/song_length = 0
 	var/song_beat = 0
-*/
-//RAPTURE EDIT - END
 
 /datum/track/default
 	song_path = 'sound/ambience/title3.ogg'
@@ -91,6 +89,8 @@
 
 	// returns a copy so it can mutate if desired.
 	return config_songs.Copy()
+*/
+//RAPTURE EDIT - END
 
 /obj/machinery/jukebox/Destroy()
 	dance_over()
@@ -115,6 +115,8 @@
 	icon_state = "[initial(icon_state)][active ? "-active" : null]"
 	return ..()
 
+//RAPTURE EDIT - BEGIN
+/*
 /obj/machinery/jukebox/ui_status(mob/user)
 	if(!anchored)
 		to_chat(user,span_warning("This device must be anchored by a wrench!"))
@@ -128,6 +130,7 @@
 		user.playsound_local(src, 'sound/misc/compiler-failure.ogg', 25, TRUE)
 		return UI_CLOSE
 	return ..()
+*/ //RAPTURE EDIT - END
 
 /obj/machinery/jukebox/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
